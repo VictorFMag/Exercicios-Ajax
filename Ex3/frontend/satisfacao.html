@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>satisfacao</title>
+    <link href="./satisfacao.css" rel="stylesheet">
+</head>
+
+<body>
+    <h2>Você está satisfeito com sua compra?</h2>
+    <section>
+        <div id="div-sim">
+            <button type="button" id="btn-sim" class="btn">SIM</button>
+            <p id="sim"></p>
+        </div>
+        <div id="div-nao">
+            <button type="button" id="btn-nao" class="btn">NÃO</button>
+            <p id="nao"></p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="text/javascript">
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Função que envia a escolha para o servidor
+            function enviarEscolha(escolha) {
+                axios.post('http://localhost:3000/contador', { escolha })
+                    .then(function (response) {
+                        document.getElementById('sim').innerText = "Quantidade de SIM: "+response.data.sim;
+                        document.getElementById('nao').innerText = "Quantidade de NAO: "+response.data.nao;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
+            document.getElementById('btn-sim').addEventListener('click', function () {
+                enviarEscolha('sim');
+            });
+
+            document.getElementById('btn-nao').addEventListener('click', function () {
+                enviarEscolha('nao');
+            });
+
+            // Faz o GET inicial ao abrir a página
+            axios.get('http://localhost:3000/contador')
+                .then(function (response) {
+                    document.getElementById('sim').innerText = "Quantidade de SIM: "+response.data.sim;
+                    document.getElementById('nao').innerText = "Quantidade de NAO: "+response.data.nao;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+    </script>
+</body>
+
+</html>

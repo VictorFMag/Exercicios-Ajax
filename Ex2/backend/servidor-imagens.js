@@ -8,13 +8,13 @@ const cors = require('cors')
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors())
-app.use('/imagens', express.static('./imagens'))
+app.use('/imagens', express.static('frontend/imagens'))
 
 app.listen(port, () => {
     console.log(`Servidor iniciado! Porta: ${port}`)
 })
 
-const arrayImagens = fs.readdirSync("./imagens")
+const arrayImagens = fs.readdirSync("frontend/imagens")
 let indice = 0;
 
 app.get('/imagens', (req, res, next) => {
@@ -25,6 +25,5 @@ app.get('/imagens', (req, res, next) => {
     const enderecoCompleto = "http://localhost:3000/imagens/"+enderecoImagem
     indice++
     console.log("indice: "+indice)
-   res.send({enderecoImagem:enderecoCompleto})
-
+    res.send({enderecoImagem:enderecoCompleto})
 });

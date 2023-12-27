@@ -10,26 +10,26 @@
 </head>
 
 <body>
-
     <img id="fotos" src="./imagens/garfield1.jpg">
-
     <form id="botao">
         <button type="submit" class="button">Próxima imagem</button>
     </form>
-
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
     botao = document.getElementById("botao")
     botao.addEventListener("submit", (e) => {
         e.preventDefault()
-        const url = 'http://localhost:3000/imagens'
-        fetch(url).then(resp => resp.json()).then(
-            json => {
-                const imagem = document.getElementById("fotos")
-                imagem.src = json.enderecoImagem
-            }
-        )
+        axios.get('http://localhost:3000/imagens')
+            .then(response => {
+                const imagem = document.getElementById("fotos");
+                imagem.setAttribute("src", response.data.enderecoImagem);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar imagem:', error);
+            });
     })
 
 </script>

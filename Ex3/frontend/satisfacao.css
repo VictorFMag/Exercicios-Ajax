@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+h2 {
+    margin-bottom: 8vh;
+}
+
+.btn {
+    background-color: transparent;
+    padding: 15px 20px 15px 20px;
+    border-radius: 10px;
+}
+
+#btn-sim {
+    border: 1px solid rgb(42, 155, 42);
+    color: green;
+    margin-bottom: 15px;
+}
+
+#btn-nao {
+    border: 1px solid red;
+    color: red;
+    margin-bottom: 15px;
+}
+
+#btn-sim:hover {
+    background-color: rgb(42, 155, 42);
+    color: white;
+    transition: .3s;
+}
+
+#btn-nao:hover {
+    background-color: red;
+    color: white;
+    transition: .3s;
+}
+
+section {
+    display: flex;
+    width: 600px;
+}
+
+#div-sim {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#div-nao {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
